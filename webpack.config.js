@@ -1,121 +1,68 @@
-const path = require("path");
-const fs = require("fs");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const TerserJSPlugin = require('terser-webpack-plugin')
 
-function generateHtmlPlugins(templateDir) {
-  const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
-  return templateFiles.map(item => {
-    const parts = item.split(".");
-    const name = parts[0];
-    const extension = parts[1];
-    return new HtmlWebpackPlugin({
-      filename: `${name}.html`,
-      template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
-      inject: false
-    });
-  });
-}
+const html = require('./webpack/html')
 
-const htmlPlugins = generateHtmlPlugins("./src/html/views");
+const isProduction = process.env.NODE_ENV === 'production'
 
-const config = {
-  entry: ["./src/js/swiper.js", "./src/sass/index.sass"],
+console.log(`Production: ${isProduction}`)
+
+module.exports = {
   output: {
-    filename: "./js/bundle.js"
-  },
-  devtool: "source-map",
-  mode: "production",
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        sourceMap: true,
-        extractComments: true
-      })
-    ]
+    path: path.join(process.cwd(), isProduction ? 'production' : 'dist')
   },
   module: {
     rules: [
       {
-        test: /\.(sass|scss)$/,
-        include: path.resolve(__dirname, "src/sass"),
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      }, {
+        test: /\.pug$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {}
-          },
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-              url: false
-            }
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              ident: "postcss",
-              sourceMap: true,
-              plugins: () => [
-                require("cssnano")({
-                  preset: [
-                    "default",
-                    {
-                      discardComments: {
-                        removeAll: true
-                      }
-                    }
-                  ]
-                })
-              ]
-            }
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true
-            }
-          }
+          'html-loader',
+          'pug-html-loader'
         ]
-      },
-      {
-        test: /\.html$/,
-        include: path.resolve(__dirname, "src/partial/includes"),
-        use: ["raw-loader"]
+      }, {
+        test: /\.sass$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: { path: 'webpack/' }
+            }
+          },
+          'sass-loader'
+        ]
       }
     ]
   },
+  optimization: {
+    minimizer: isProduction ? [
+      new TerserJSPlugin({
+        terserOptions: {
+          ecma: 3,
+          ie8: true
+        }
+      })
+    ] : []
+  },
+  performance: {
+    hints: isProduction ? 'warning' : false
+  },
   plugins: [
+    ...html,
     new MiniCssExtractPlugin({
-      filename: "./css/style.bundle.css"
+      filename: '[name].css',
+      chunkFilename: 'chunk-[id].css'
     }),
-    new CopyWebpackPlugin([
-      {
-        from: "./src/fonts",
-        to: "./fonts"
-      },
-      {
-        from: "./src/favicon",
-        to: "./favicon"
-      },
-      {
-        from: "./src/img",
-        to: "./img"
-      },
-      {
-        from: "./src/uploads",
-        to: "./uploads"
-      }
-    ])
-  ].concat(htmlPlugins)
-};
-
-module.exports = (env, argv) => {
-  if (argv.mode === "production") {
-    config.plugins.push(new CleanWebpackPlugin());
-  }
-  return config;
-};
+    new HardSourceWebpackPlugin()
+  ]
+}

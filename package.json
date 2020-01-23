@@ -1,42 +1,48 @@
 {
   "name": "riverdoc",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Riverdoc Landing Markup",
-  "scripts": {
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "watch": "webpack --mode development --watch",
-    "start": "webpack-dev-server --mode development --open",
-    "clear": "del-cli dist"
-  },
   "author": "Atlantis United Team",
   "license": "MIT",
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.6",
-    "babel-preset-env": "^1.7.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "css-loader": "^3.4.0",
-    "cssnano": "^4.1.10",
-    "del-cli": "^3.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.8.2",
-    "node-sass": "^4.13.0",
-    "postcss-loader": "^3.0.0",
-    "prettier": "^1.19.1",
-    "pug": "^2.0.4",
-    "pug-loader": "^2.4.0",
-    "raw-loader": "^4.0.0",
-    "sass-loader": "^8.0.0",
-    "terser-webpack-plugin": "^2.3.1",
-    "webpack": "^4.41.3",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.0"
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --progress --profile --mode development",
+    "build": "cross-env NODE_ENV=production webpack --progress --profile --mode production",
+    "watch": "webpack-dev-server --mode development --open"
   },
-  "dependencies": {
-    "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.16.0"
+  "devDependencies": {
+    "@babel/core": "7.7.0",
+    "@babel/preset-env": "7.7.0",
+    "babel-loader": "8.0.6",
+    "cross-env": "^6.0.3",
+    "css-loader": "3.2.0",
+    "cssnano": "^4.1.10",
+    "hard-source-webpack-plugin": "^0.13.1",
+    "html-loader": "0.5.5",
+    "html-webpack-plugin": "3.2.0",
+    "mini-css-extract-plugin": "0.8.0",
+    "node-sass": "4.13.0",
+    "postcss": "^7.0.23",
+    "postcss-html": "^0.36.0",
+    "postcss-import": "^12.0.1",
+    "postcss-jsx": "^0.36.3",
+    "postcss-less": "^3.1.4",
+    "postcss-loader": "^3.0.0",
+    "postcss-markdown": "^0.36.0",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-sass": "^0.4.2",
+    "postcss-scss": "^2.0.0",
+    "postcss-syntax": "^0.36.2",
+    "pug-html-loader": "1.1.5",
+    "sass-loader": "8.0.0",
+    "sugarss": "^2.0.0",
+    "thread-loader": "^2.1.3",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "3.9.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
