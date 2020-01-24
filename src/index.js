@@ -1,4 +1,4 @@
 import style from './styles/app.sass'
-import script from './scripts/index.js'
+import swiper from './plugins/swiper/swiper.min.js'
 
 console.log('all files loaded')
