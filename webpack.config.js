@@ -2,6 +2,7 @@ const path = require('path')
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const TerserJSPlugin = require('terser-webpack-plugin')
 
 const html = require('./webpack/html')
 
