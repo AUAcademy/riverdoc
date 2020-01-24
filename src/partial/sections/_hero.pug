@@ -1,14 +1,26 @@
 section.hero
-  div.container
-    header.heroHeader
+  div.column
+    header.heroHeader.row
       div.heroHeader-left
-        img.heroLogo
+        img(src='icons/logo.svg').heroLogo
+      div(style={'flex-basis': '100%'})
       div.heroHeader-right
         button.button.button-heroHeader Задать вопрос
-    div.column
-      h1.heroTitle Riverdoc
-      span.heroSubTitle Система управления документами и задачами
-      hr.heroDivider
-      p.heroDescription Представляет собой готовое решение для автоматизации документооборота, делопроизводства и управления бизнес-процессами, включая контроль исполнительской дисциплины.
-    div.column
-      form.heroForm
+    div.heroContent.row
+      div.heroContent-left.column
+        h1.heroTitle Riverdoc
+        span.heroSubTitle Система управления документами и задачами
+        hr.heroDivider
+        p.heroDescription Представляет собой готовое решение для автоматизации документооборота, делопроизводства и управления бизнес-процессами, включая контроль исполнительской дисциплины.
+      div.heroContent-right.column
+        h1 Заявка на демо-доступ
+        form.heroForm
+          label Имя
+          input
+          label Организация
+          input
+          label Телефон
+          input
+          label E-mail
+          input
+          button.button.button-heroForm

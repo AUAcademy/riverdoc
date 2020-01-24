@@ -1,7 +1,7 @@
 const path = require('path')
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
-const TerserJSPlugin = require('terser-webpack-plugin')
 
 const html = require('./webpack/html')
 
@@ -41,6 +41,13 @@ module.exports = {
           },
           'sass-loader'
         ]
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        options: {
+          extract: true
+        },
       }
     ]
   },
@@ -63,6 +70,7 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: 'chunk-[id].css'
     }),
-    new HardSourceWebpackPlugin()
+    new HardSourceWebpackPlugin(),
+    new SpriteLoaderPlugin()
   ]
 }
