@@ -1,32 +1,54 @@
 const path = require('path')
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
-const TerserJSPlugin = require('terser-webpack-plugin')
-
-const html = require('./webpack/html')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const TerserJSPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-console.log(`Production: ${isProduction}`)
-
 module.exports = {
+  entry: {
+    app: './src/index.js',
+  },
   output: {
+    filename: '[name].js',
     path: path.join(process.cwd(), isProduction ? 'production' : 'dist')
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      }, {
         test: /\.pug$/,
         use: [
           'html-loader',
           'pug-html-loader'
         ]
-      }, {
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'assets/images/photo',
+          name: '[name].[ext]'
+        }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'assets/images/icons',
+          name: '[name].[ext]'
+        }
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'assets/fonts',
+          name: '[name].[ext]'
+        }
+      },
+      {
         test: /\.sass$/,
         use: [
           MiniCssExtractPlugin.loader,
@@ -37,41 +59,42 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              config: { path: 'webpack/' }
+              config: { path: 'config/' }
             }
           },
-          'sass-loader'
+          {
+            loader: 'resolve-url-loader',
+            options: {
+              engine: 'postcss',
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            }
+          },
         ]
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true
-        },
       }
     ]
   },
   optimization: {
-    minimizer: isProduction ? [
-      new TerserJSPlugin({
-        terserOptions: {
-          ecma: 3,
-          ie8: true
-        }
-      })
-    ] : []
-  },
-  performance: {
-    hints: isProduction ? 'warning' : false
+    minimizer: isProduction ? [new TerserJSPlugin({
+      terserOptions: {
+        ecma: 3,
+        ie8: true
+      }
+    })] : []
   },
   plugins: [
-    ...html,
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: 'chunk-[id].css'
     }),
-    new HardSourceWebpackPlugin(),
-    new SpriteLoaderPlugin()
+    new HtmlWebPackPlugin({
+      filename: 'index.html',
+      template: './src/index.pug',
+      inject: true
+    }),
   ]
 }
