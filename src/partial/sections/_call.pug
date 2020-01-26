@@ -1,22 +1,26 @@
-div.row
+div.row.call
   div.column
-    div.column
+    div.column.callContactDetails
       img(src="icons/waves.svg")
-      h2
+      h2 Как с нами связаться
     div.column
-      span
-      span
-  div.column
+      span.callPhoneNumber +7 (812)
+      span.callPhoneNumberBig 346-61-49
+      span.callEmail hello@riverdoc.ru
+    div.bgImageCall
+      img(src="icons/background.svg")
+  div.column.wrapCallForm
     form.callForm
-      fieldset
+      fieldset.callFormInput
         legend Имя
-        input(type="text")
-      fieldset
+        input
+      fieldset.callFormInput
         legend Email
-        input(type="email")
-      fieldset
+        input
+      fieldset.callFormInput.callFormInputTextarea
         legend Сообщение
-        input(type="textarea")
-      button.button
+        textarea
+      button.buttonCallForm
+        span Отправить
 
 
