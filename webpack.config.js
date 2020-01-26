@@ -29,7 +29,8 @@ module.exports = {
         loader: 'file-loader',
         options: {
           outputPath: 'assets/images/photo',
-          name: '[name].[ext]'
+          name: '[name].[ext]',
+          esModule: false,
         }
       },
       {
@@ -37,7 +38,8 @@ module.exports = {
         loader: 'file-loader',
         options: {
           outputPath: 'assets/images/icons',
-          name: '[name].[ext]'
+          name: '[name].[ext]',
+          esModule: false,
         }
       },
       {
