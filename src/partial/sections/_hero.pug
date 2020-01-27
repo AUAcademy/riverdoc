@@ -7,13 +7,24 @@ section.hero
       div.heroHeader-right
         div.button.button-heroHeader
           span задать вопрос
+    div(style={'flex-basis':'107px'})
     div.heroContent.row
       div.heroContent-left.column
         h1.heroTitle Riverdoc
-        span.heroSubTitle Система управления документами и задачами
-        div.dividerHero.row
-          div.divider
-        p.heroDescription Представляет собой готовое решение для автоматизации документооборота, делопроизводства и управления бизнес-процессами, включая контроль исполнительской дисциплины.
+        span.heroSubTitle
+          | Система управления
+          br
+          | документами и задачами
+        div.divider.divider-start.divider-white
+        p.heroDescription
+          | Представляет собой готовое решение для автоматизации
+          br
+          | документооборота, делопроизводства и управления
+          br
+          | бизнес-процессами, включая контроль исполнительской
+          br
+          | дисциплины.
+      div(style={'flex-basis': '135px'})
       div.heroContent-right.column
         form.heroForm
           h1 Заявка на демо-доступ
