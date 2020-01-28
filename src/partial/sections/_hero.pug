@@ -1,50 +1,55 @@
 section.hero
-  div.container
-    div.column
-      header.heroHeader.row
-        div.heroHeader-left
-          img(src='./assets/images/icons/common/logo.svg').heroLogo
-        div(style={'flex-basis': '100%'})
-        div.heroHeader-right
-          div.button.button-heroHeader
-            span задать вопрос
-      div(style={'flex-basis':'107px'})
-      div.heroContent.row
-        div.heroContent-left.column
-          div(style={'flex-basis':'80px'})
-          h1.heroTitle Riverdoc
-          span.heroSubTitle
-            | Система управления
-            br
-            | документами и задачами
-          div.divider.divider-start.divider-white
-          p.heroDescription
-            | Представляет собой готовое решение для автоматизации
-            br
-            | документооборота, делопроизводства и управления
-            br
-            | бизнес-процессами, включая контроль исполнительской
-            br
-            | дисциплины.
-        div(style={'flex-basis': '135px'})
-        div.heroContent-right.column
-          form.heroForm
-            h1.heroForm-title Заявка на демо-доступ
-            div.heroForm-container
-              label.heroForm-label Имя
-              input.heroForm-input
-            div(style={'flex-basis':'20px'})
-            div.heroForm-container
-              label.heroForm-label Организация
-              input.heroForm-input
-            div(style={ 'flex-basis': '20px' })
-            div.heroForm-container
-              label.heroForm-label Телефон
-              input.heroForm-input
-            div(style={ 'flex-basis': '20px' })
-            div.heroForm-container
-              label.heroForm-label E-mail
-              input.heroForm-input
-            div(style={ 'flex-basis': '20px' })
-            div.button.button-heroForm
-              span отправить
+  div.column
+    div(style={'flex-basis':'58px'})
+    header.heroHeader.row
+      div(style={'flex-basis':'105px'})
+      div.heroHeader-left
+        img(src='./assets/images/icons/common/logo.svg').heroLogo
+      div(style={'flex-basis': '872px'})
+      div.heroHeader-right
+        a(href='#').button.button-heroHeader
+          span задать вопрос
+      div(style={ 'flex-basis': '105px' })
+    div(style={'flex-basis':'107px'})
+    div.heroContent.row
+      div(style={'flex-basis':'105px'})
+      div.heroContent-left.column
+        div(style={'flex-basis':'80px'})
+        h1.heroTitle Riverdoc
+        span.heroSubTitle
+          | Система управления
+          br
+          | документами и задачами
+        div.divider-start
+          div.divider.divider-white
+        p.heroDescription
+          | Представляет собой готовое решение для автоматизации
+          br
+          | документооборота, делопроизводства и управления
+          br
+          | бизнес-процессами, включая контроль исполнительской
+          br
+          | дисциплины.
+      div(style={'flex-basis': '135px'})
+      div.heroContent-right.column
+        div.heroWaves-left
+        form.heroForm
+          h1.heroForm-title Заявка на демо-доступ
+          div.heroForm-container
+            label.heroForm-label Имя
+            input.heroForm-input
+          div(style={'flex-basis':'20px'})
+          div.heroForm-container
+            label.heroForm-label Организация
+            input.heroForm-input
+          div(style={ 'flex-basis': '20px' })
+          div.heroForm-container
+            label.heroForm-label Телефон
+            input.heroForm-input
+          div(style={ 'flex-basis': '20px' })
+          div.heroForm-container
+            label.heroForm-label E-mail
+            input.heroForm-input
+          div(style={ 'flex-basis': '20px' })
+          a(href='#').button.button-heroForm
+            span отправить
