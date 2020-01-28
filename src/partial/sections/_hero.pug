@@ -11,6 +11,7 @@ section.hero
       div(style={'flex-basis':'107px'})
       div.heroContent.row
         div.heroContent-left.column
+          div(style={'flex-basis':'80px'})
           h1.heroTitle Riverdoc
           span.heroSubTitle
             | Система управления
@@ -28,14 +29,22 @@ section.hero
         div(style={'flex-basis': '135px'})
         div.heroContent-right.column
           form.heroForm
-            h1 Заявка на демо-доступ
-            label Имя
-            input
-            label Организация
-            input
-            label Телефон
-            input
-            label E-mail
-            input
+            h1.heroForm-title Заявка на демо-доступ
+            div.heroForm-container
+              label.heroForm-label Имя
+              input.heroForm-input
+            div(style={'flex-basis':'20px'})
+            div.heroForm-container
+              label.heroForm-label Организация
+              input.heroForm-input
+            div(style={ 'flex-basis': '20px' })
+            div.heroForm-container
+              label.heroForm-label Телефон
+              input.heroForm-input
+            div(style={ 'flex-basis': '20px' })
+            div.heroForm-container
+              label.heroForm-label E-mail
+              input.heroForm-input
+            div(style={ 'flex-basis': '20px' })
             div.button.button-heroForm
               span отправить

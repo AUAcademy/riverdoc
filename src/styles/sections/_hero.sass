@@ -1,16 +1,13 @@
 .hero
   color: #FFFFFF
   background: radial-gradient(50.75% 50.75% at 50% 49.25%, #006D8D 0%, #0A4759 100%)
-  &Header
-    margin-bottom: 100px
   &Title
     font-family: "Blogger Sans", serif
     font-style: normal
     font-weight: bold
     font-size: 64px
     line-height: 70px
-    margin-top: 80px
-    margin-bottom: 0
+    margin: 0
     color: #3BB3C4
   &SubTitle
     font-family: "Blogger Sans", serif
@@ -19,7 +16,7 @@
     font-size: 40px
     line-height: 45px
   &Description
-    font-family: "Proxima Nova", serif
+    font-family: "Proxima Nova Lt", serif
     font-style: normal
     font-weight: normal
     font-size: 22px
@@ -34,3 +31,30 @@
     border-radius: 10px
     flex-direction: column
     background-color: #0F2B3D
+    &-container
+      position: relative
+    &-title
+      font-family: "Blogger Sans", serif
+      font-style: normal
+      font-weight: 300
+      font-size: 28px
+      line-height: 30px
+      margin: 0 0 40px
+    &-label
+      top: -10px
+      left: 20px
+      height: 20px
+      bottom: 0
+      padding: 0 10px
+      position: absolute
+      font-family: "Proxima Nova Lt", serif
+      font-size: 16px
+      background: #0F2B3D
+      font-style: normal
+      font-weight: 600
+      line-height: 20px
+    &-input
+      color: #FFFFFF
+      padding: 8px 10px
+      outline: 0
+      background: transparent
